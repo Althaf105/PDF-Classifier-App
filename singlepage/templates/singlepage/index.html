@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <style>
+       #Testdiv {
+  border: 2px solid black;
+  padding: 25px;
+
+  background-repeat: no-repeat;
+  background-size: auto;
+}
+
+    </style>
+    <head>
+        <title>Malicious Pdf Predictor</title>
+        <script>
+
+            //  This function communicates with django (backend)
+            $(function openVideo() {
+                $('#Predict_button').click(function() {
+                    var delay = setTimeout(function() {
+                        //alert('Hello!');
+                        
+                    }, 100000);
+                });
+            });
+
+            function clearBox(elementID)
+                {
+                document.getElementById(elementID).innerHTML = "";
+                }
+        </script>
+    </head>
+    <body>
+        <center>
+        <h1>Malicious PDF Detection</h1>
+        <div id="Testdiv">
+            
+            <form enctype="multipart/form-data action="" method="POST">
+                {% csrf_token %}
+                <input type="file" id="exampleInputFile" name="input_file">
+                <input id="Predict_button" type="submit" value="Predict" onclick="clearBox('content')"/>
+                <div id="content" >
+                    {% if uploaded_file %}
+                    <p id="file_data" style="color:grey;font-size:20px;"> Processed File: <strong>{{uploaded_file}}</strong></p>
+                    <p id="prediction_data" style="color:navy;font-size:20px;"> Prediciton: <strong>{{Prediciton}}</strong></p>
+                    {% endif %}
+                </div>
+            </form>
+
+        </div>
+
+    </center>
+    </body>
+</html>
